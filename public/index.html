@@ -20,101 +20,119 @@
       --radius: 12px; --radius-sm: 8px;
     }
     body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-    header { border-bottom: 1px solid var(--border); background: var(--surface); padding: 0 2rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    header { border-bottom: 1px solid var(--border); background: var(--surface); padding: 0 2rem; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
     .logo { font-size: 16px; font-weight: 600; letter-spacing: -0.02em; color: var(--text); display: flex; align-items: center; gap: 8px; }
     .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
     .header-badge { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--muted); border: 1px solid var(--border); padding: 3px 8px; border-radius: 99px; }
-    main { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
-    .hero { margin-bottom: 3rem; }
-    h1 { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 10px; }
+    main { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+    /* HERO */
+    .hero { margin-bottom: 2.5rem; }
+    h1 { font-size: 30px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 8px; }
     h1 span { color: var(--accent); }
-    .hero-sub { font-size: 16px; color: var(--muted); line-height: 1.6; }
-    .input-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem; }
-    label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-    input[type="text"] { width: 100%; height: 44px; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0 14px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); outline: none; transition: border-color 0.15s; }
-    input[type="text"]:focus { border-color: var(--accent); }
+    .hero-sub { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+    /* INICIO */
+    .start-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
     .url-row { display: flex; gap: 10px; margin-bottom: 1rem; }
     .url-row input { flex: 1; }
+    input[type="text"] { width: 100%; height: 44px; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0 14px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); outline: none; transition: border-color 0.15s; }
+    input[type="text"]:focus { border-color: var(--accent); }
+    .platforms { display: flex; gap: 6px; flex-wrap: wrap; }
+    .platform-tag { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--muted); border: 1px solid var(--border); padding: 3px 8px; border-radius: 99px; }
     .btn { height: 44px; padding: 0 20px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text); transition: all 0.15s; white-space: nowrap; }
     .btn:hover { background: var(--bg); }
     .btn-primary { background: var(--text); color: var(--surface); border-color: var(--text); }
     .btn-primary:hover { opacity: 0.85; }
     .btn-sm { height: 36px; padding: 0 14px; font-size: 13px; }
-    .platforms { display: flex; gap: 6px; flex-wrap: wrap; }
-    .platform-tag { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--muted); border: 1px solid var(--border); padding: 3px 8px; border-radius: 99px; }
-    .loading { text-align: center; padding: 4rem 0; display: none; }
-    .spinner { width: 32px; height: 32px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 1.5rem; }
+
+    /* TABS */
+    .tabs-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .tabs-header { display: flex; border-bottom: 1px solid var(--border); background: var(--bg); overflow-x: auto; }
+    .tab-btn { flex: 1; min-width: 100px; padding: 12px 16px; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; color: var(--muted); background: transparent; border: none; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap; text-align: center; }
+    .tab-btn:hover { color: var(--text); background: var(--surface); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--surface); }
+    .tab-btn.done { color: var(--text); }
+    .tab-btn.compare-tab { color: var(--muted); }
+    .tab-btn.compare-tab.active { color: var(--accent); }
+    .tab-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--ok-border); margin-left: 6px; vertical-align: 2px; }
+    .tab-content { display: none; padding: 1.5rem; }
+    .tab-content.active { display: block; }
+
+    /* INPUT TAB */
+    .tab-input-area { }
+    .tab-url-label { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+    .tab-url-row { display: flex; gap: 10px; margin-bottom: 0; }
+    .tab-url-row input { flex: 1; }
+
+    /* LOADING */
+    .loading-inline { text-align: center; padding: 3rem 0; }
+    .spinner { width: 28px; height: 28px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 1rem; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .loading-step { font-size: 14px; color: var(--muted); font-family: 'DM Mono', monospace; }
-    .error-box { background: var(--danger-bg); border: 1px solid var(--danger-border); border-radius: var(--radius-sm); padding: 1rem 1.25rem; font-size: 14px; color: var(--danger-text); display: none; margin-bottom: 1.5rem; }
-    .result { display: none; }
-    .car-name { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
-    .car-meta { font-size: 13px; font-family: 'DM Mono', monospace; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
-    .verdict-banner { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; }
-    .score-circle { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.03em; }
+    .loading-step { font-size: 13px; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+    /* ERROR */
+    .error-box { background: var(--danger-bg); border: 1px solid var(--danger-border); border-radius: var(--radius-sm); padding: 1rem 1.25rem; font-size: 14px; color: var(--danger-text); margin-bottom: 1rem; }
+
+    /* ANÁLISIS */
+    .car-name { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 3px; }
+    .car-meta { font-size: 12px; font-family: 'DM Mono', monospace; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+    .verdict-banner { background: var(--bg); border-radius: var(--radius-sm); padding: 1.25rem; display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.25rem; }
+    .score-circle { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 20px; font-weight: 600; }
     .score-circle.good { background: var(--ok-bg); color: var(--ok-text); }
     .score-circle.ok { background: var(--warn-bg); color: var(--warn-text); }
     .score-circle.bad { background: var(--danger-bg); color: var(--danger-text); }
-    .verdict-main { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+    .verdict-main { font-size: 15px; font-weight: 500; margin-bottom: 3px; }
     .verdict-price { font-size: 13px; color: var(--muted); }
     .verdict-price strong { color: var(--text); font-family: 'DM Mono', monospace; }
-    .metrics-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
-    .metric-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem; }
-    .metric-label { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-    .metric-value { font-size: 18px; font-weight: 600; font-family: 'DM Mono', monospace; letter-spacing: -0.02em; }
-    .metric-sub { font-size: 11px; color: var(--muted); margin-top: 3px; font-family: 'DM Mono', monospace; }
-    .section-label { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; margin-top: 1.5rem; }
-    .criterio-row { display: flex; align-items: center; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+    .metrics-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 1.25rem; }
+    .metric-card { background: var(--bg); border-radius: var(--radius-sm); padding: 0.875rem; }
+    .metric-label { font-size: 10px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
+    .metric-value { font-size: 16px; font-weight: 600; font-family: 'DM Mono', monospace; }
+    .metric-sub { font-size: 10px; color: var(--muted); margin-top: 2px; font-family: 'DM Mono', monospace; }
+    .section-label { font-size: 10px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; margin-top: 1.25rem; }
+    .criterio-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border); }
     .criterio-row:last-child { border-bottom: none; }
-    .criterio-name { font-size: 13px; color: var(--text); width: 140px; flex-shrink: 0; }
-    .criterio-bar-bg { flex: 1; height: 4px; background: var(--bg); border-radius: 99px; overflow: hidden; }
+    .criterio-name { font-size: 13px; color: var(--text); width: 130px; flex-shrink: 0; }
+    .criterio-bar-bg { flex: 1; height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
     .criterio-bar-fill { height: 100%; border-radius: 99px; transition: width 1s cubic-bezier(.4,0,.2,1); }
-    .criterio-score { font-size: 13px; font-weight: 500; font-family: 'DM Mono', monospace; width: 24px; text-align: right; }
-    .alertas-list { display: flex; flex-direction: column; gap: 8px; }
-    .alerta { padding: 10px 14px; border-radius: var(--radius-sm); font-size: 13px; line-height: 1.5; border: 1px solid; display: flex; gap: 8px; align-items: flex-start; }
+    .criterio-score { font-size: 12px; font-weight: 500; font-family: 'DM Mono', monospace; width: 20px; text-align: right; }
+    .alertas-list { display: flex; flex-direction: column; gap: 7px; }
+    .alerta { padding: 9px 12px; border-radius: var(--radius-sm); font-size: 13px; line-height: 1.5; border: 1px solid; display: flex; gap: 8px; align-items: flex-start; }
     .alerta svg { flex-shrink: 0; margin-top: 1px; }
     .alerta.warn { background: var(--warn-bg); border-color: var(--warn-border); color: var(--warn-text); }
     .alerta.ok { background: var(--ok-bg); border-color: var(--ok-border); color: var(--ok-text); }
     .alerta.info { background: var(--info-bg); border-color: var(--info-border); color: var(--info-text); }
     .alerta.danger { background: var(--danger-bg); border-color: var(--danger-border); color: var(--danger-text); }
-    .resumen-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem; font-size: 14px; line-height: 1.75; color: var(--text); margin-bottom: 1.5rem; }
-    .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
-
-    /* Buscar similares */
-    .similares-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
-    .similares-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
-    .similares-sub { font-size: 13px; color: var(--muted); margin-bottom: 1rem; }
-    .similares-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn-platform { height: 38px; padding: 0 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; border: 1px solid var(--border); background: var(--bg); color: var(--text); transition: all 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
-    .btn-platform:hover { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
-
-    /* Comparar */
-    .comparar-box { background: var(--accent-light); border: 1px solid #C5DBA8; border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
-    .comparar-title { font-size: 14px; font-weight: 500; color: var(--accent); margin-bottom: 4px; }
-    .comparar-sub { font-size: 13px; color: #3D6B22; margin-bottom: 1rem; }
-    .comparar-row { display: flex; gap: 10px; }
-    .comparar-row input { flex: 1; background: var(--surface); }
-
-    /* Comparación lado a lado */
-    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 1.5rem; }
-    .compare-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
-    .compare-card.winner { border-color: var(--accent); border-width: 2px; }
-    .compare-badge { font-size: 11px; font-weight: 500; background: var(--accent); color: white; padding: 2px 8px; border-radius: 99px; display: inline-block; margin-bottom: 8px; }
-    .compare-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-    .compare-meta { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; margin-bottom: 12px; line-height: 1.6; }
-    .compare-score { font-size: 28px; font-weight: 600; margin-bottom: 4px; }
-    .compare-price { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
-    .compare-price strong { color: var(--text); }
-    .compare-criterios { font-size: 12px; }
-    .compare-criterio-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); }
-    .compare-criterio-row:last-child { border-bottom: none; }
-    .compare-loading { text-align: center; padding: 2rem; color: var(--muted); font-size: 14px; display: none; }
-    .compare-spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; margin-right: 8px; vertical-align: -3px; }
-
-    .bottom-actions { display: flex; gap: 10px; margin-bottom: 1rem; }
-    .source-link { font-size: 12px; color: var(--muted); margin-top: 1rem; }
+    .resumen-box { background: var(--bg); border-radius: var(--radius-sm); padding: 1.125rem; font-size: 13px; line-height: 1.75; color: var(--text); margin-bottom: 1.25rem; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 1.25rem 0; }
+    .similares-box { background: var(--accent-light); border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin-bottom: 1rem; }
+    .similares-title { font-size: 13px; font-weight: 500; color: var(--accent); margin-bottom: 3px; }
+    .similares-sub { font-size: 12px; color: #3D6B22; margin-bottom: 10px; }
+    .similares-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-platform { height: 34px; padding: 0 14px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; border: 1px solid #C5DBA8; background: var(--surface); color: var(--accent); transition: all 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+    .btn-platform:hover { background: var(--accent); color: white; border-color: var(--accent); }
+    .source-link { font-size: 11px; color: var(--muted); margin-top: 0.5rem; }
     .source-link a { color: var(--accent); text-decoration: none; }
-    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 4rem; }
+
+    /* COMPARATIVA */
+    .compare-intro { font-size: 13px; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.6; }
+    .compare-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 1.25rem; }
+    .compare-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem; }
+    .compare-card.winner { border-color: var(--accent); border-width: 2px; background: var(--accent-light); }
+    .compare-badge { font-size: 10px; font-weight: 500; background: var(--accent); color: white; padding: 2px 7px; border-radius: 99px; display: inline-block; margin-bottom: 6px; }
+    .compare-num { font-size: 11px; font-weight: 500; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .compare-name { font-size: 13px; font-weight: 600; margin-bottom: 3px; line-height: 1.3; }
+    .compare-score-big { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; margin: 8px 0 2px; }
+    .compare-price-line { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    .compare-price-line strong { color: var(--text); font-family: 'DM Mono', monospace; }
+    .compare-mini-criterios { font-size: 11px; border-top: 1px solid var(--border); padding-top: 8px; }
+    .cmc-row { display: flex; justify-content: space-between; padding: 3px 0; }
+    .cmc-row span:first-child { color: var(--muted); }
+    .compare-veredicto { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem 1.25rem; font-size: 13px; line-height: 1.7; }
+    .empty-compare { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 14px; }
+
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 3rem; }
   </style>
 </head>
 <body>
@@ -127,14 +145,15 @@
 <main>
   <div class="hero">
     <h1>¿Vale lo que piden<br>por ese <span>coche</span>?</h1>
-    <p class="hero-sub">Pega el enlace del anuncio y la IA analiza precio, kilómetros, señales de alerta y te da un veredicto en segundos.</p>
+    <p class="hero-sub">Analiza hasta 3 anuncios y compáralos lado a lado para encontrar el mejor deal.</p>
   </div>
 
-  <div id="formSection">
-    <div class="input-card">
+  <!-- INICIO -->
+  <div id="startSection">
+    <div class="start-card">
       <div class="url-row">
         <input type="text" id="urlInput" placeholder="https://www.flexicar.es/coche/..." />
-        <button class="btn btn-primary" onclick="analizar()">Analizar</button>
+        <button class="btn btn-primary" onclick="iniciarAnalisis()">Analizar</button>
       </div>
       <div class="platforms">
         <span class="platform-tag">autoscout24.es</span>
@@ -145,90 +164,72 @@
     </div>
   </div>
 
-  <div id="loadingSection" class="loading">
-    <div class="spinner"></div>
-    <div id="loadingStep" class="loading-step">Accediendo al anuncio...</div>
-  </div>
+  <!-- TABS -->
+  <div id="tabsSection" style="display:none">
+    <div class="tabs-wrap">
+      <div class="tabs-header">
+        <button class="tab-btn active" id="tab-btn-0" onclick="switchTab(0)">Coche 1</button>
+        <button class="tab-btn" id="tab-btn-1" onclick="switchTab(1)">Coche 2</button>
+        <button class="tab-btn" id="tab-btn-2" onclick="switchTab(2)">Coche 3</button>
+        <button class="tab-btn compare-tab" id="tab-btn-3" onclick="switchTab(3)">Comparativa</button>
+      </div>
 
-  <div id="errorSection" class="error-box"></div>
-
-  <div id="resultSection" class="result">
-    <div id="carName" class="car-name"></div>
-    <div id="carMeta" class="car-meta"></div>
-
-    <div class="verdict-banner">
-      <div id="scoreCircle" class="score-circle good"></div>
-      <div>
-        <div id="verdictMain" class="verdict-main"></div>
-        <div id="verdictPrice" class="verdict-price"></div>
+      <!-- TAB 0 -->
+      <div class="tab-content active" id="tab-0"></div>
+      <!-- TAB 1 -->
+      <div class="tab-content" id="tab-1">
+        <div class="tab-input-area" id="input-1">
+          <p class="tab-url-label">Pega el link del segundo coche a comparar</p>
+          <div class="tab-url-row">
+            <input type="text" id="urlInput1" placeholder="https://www.autoscout24.es/anuncio/..." />
+            <button class="btn btn-primary btn-sm" onclick="analizarTab(1)">Analizar</button>
+          </div>
+        </div>
+        <div id="result-1" style="display:none"></div>
+      </div>
+      <!-- TAB 2 -->
+      <div class="tab-content" id="tab-2">
+        <div class="tab-input-area" id="input-2">
+          <p class="tab-url-label">Pega el link del tercer coche a comparar</p>
+          <div class="tab-url-row">
+            <input type="text" id="urlInput2" placeholder="https://www.ocasionplus.com/coche/..." />
+            <button class="btn btn-primary btn-sm" onclick="analizarTab(2)">Analizar</button>
+          </div>
+        </div>
+        <div id="result-2" style="display:none"></div>
+      </div>
+      <!-- TAB 3 COMPARATIVA -->
+      <div class="tab-content" id="tab-3">
+        <div id="compareContent"></div>
       </div>
     </div>
 
-    <div class="metrics-grid" id="metricsGrid"></div>
-
-    <p class="section-label">Análisis por criterios</p>
-    <div id="criteriosList"></div>
-
-    <p class="section-label" style="margin-top:1.5rem">Señales detectadas</p>
-    <div class="alertas-list" id="alertasList"></div>
-
-    <hr class="divider">
-    <p class="section-label" style="margin-top:0">Resumen del análisis</p>
-    <div id="resumenBox" class="resumen-box"></div>
-
-    <!-- BUSCAR SIMILARES -->
-    <div class="similares-box" id="similaresBox">
-      <div class="similares-title">Buscar coches similares</div>
-      <div class="similares-sub">Compara con otros anuncios del mismo modelo en estas plataformas</div>
-      <div class="similares-btns" id="similaresBtns"></div>
+    <div style="margin-top:1rem;text-align:right">
+      <button class="btn btn-sm" onclick="reiniciar()">← Empezar de nuevo</button>
     </div>
-
-    <!-- COMPARAR CON OTRO -->
-    <div class="comparar-box">
-      <div class="comparar-title">¿Has encontrado otro que te interesa?</div>
-      <div class="comparar-sub">Pega el link y lo comparamos con este lado a lado</div>
-      <div class="comparar-row">
-        <input type="text" id="compareUrlInput" placeholder="https://www.autoscout24.es/anuncio/..." />
-        <button class="btn btn-primary btn-sm" onclick="compararCoche()">Comparar</button>
-      </div>
-    </div>
-
-    <!-- RESULTADO COMPARACIÓN -->
-    <div id="compareLoadingSection" class="compare-loading">
-      <span class="compare-spinner"></span> Analizando segundo coche...
-    </div>
-    <div id="compareResultSection" style="display:none">
-      <p class="section-label">Comparativa</p>
-      <div class="compare-grid" id="compareGrid"></div>
-      <div id="compareVeredicto" class="resumen-box" style="margin-bottom:1.5rem"></div>
-    </div>
-
-    <hr class="divider">
-    <div class="bottom-actions">
-      <button class="btn btn-primary" onclick="nuevo()">← Analizar otro</button>
-      <button class="btn" onclick="compartir()">Copiar resumen</button>
-    </div>
-    <p class="source-link" id="sourceLink"></p>
   </div>
 </main>
 
 <footer>AutoChoice · Análisis de coches de segunda mano con IA · No almacenamos tus datos</footer>
 
 <script>
-const steps = ['Accediendo al anuncio...','Extrayendo datos del coche...','Consultando precios de mercado...','Detectando señales de alerta...','Calculando puntuación...','Preparando el veredicto...'];
-let stepInterval, currentUrl = '', currentAnalysis = null, secondAnalysis = null;
+const stepsMsgs = ['Accediendo al anuncio...','Extrayendo datos...','Consultando precios de mercado...','Detectando alertas...','Calculando puntuación...','Preparando veredicto...'];
+const analyses = [null, null, null];
 
-function show(id) { document.getElementById(id).style.display = 'block'; }
-function hide(id) { document.getElementById(id).style.display = 'none'; }
+function barColor(n) { return n >= 7 ? '#4A8A2A' : n >= 5 ? '#C07A20' : '#C03030'; }
+function scoreClass(n) { return n >= 7 ? 'good' : n >= 5 ? 'ok' : 'bad'; }
 
-function nuevo() {
-  document.getElementById('urlInput').value = '';
-  document.getElementById('compareUrlInput').value = '';
-  document.getElementById('resultSection').style.display = 'none';
-  document.getElementById('errorSection').style.display = 'none';
-  document.getElementById('compareResultSection').style.display = 'none';
-  show('formSection');
-  currentAnalysis = null; secondAnalysis = null;
+const alertIcon = {
+  warn: `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1L13 12H1L7 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M7 5.5V8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="7" cy="10" r="0.7" fill="currentColor"/></svg>`,
+  ok: `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 7L6.2 8.8L9.5 5.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  info: `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M7 6.5V10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="7" cy="4.5" r="0.7" fill="currentColor"/></svg>`,
+  danger: `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M5 5L9 9M9 5L5 9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>`
+};
+
+function switchTab(idx) {
+  document.querySelectorAll('.tab-content').forEach((t,i) => t.classList.toggle('active', i === idx));
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i === idx));
+  if (idx === 3) renderComparativa();
 }
 
 function buildSearchUrls(titulo) {
@@ -241,20 +242,109 @@ function buildSearchUrls(titulo) {
   ];
 }
 
-async function analizar() {
-  const url = document.getElementById('urlInput').value.trim();
-  if (!url) { document.getElementById('urlInput').focus(); return; }
+function renderAnalysis(r, url, tabIdx) {
+  const diff = r.precio_anuncio - r.precio_mercado_medio;
+  const diffPct = Math.round((diff / r.precio_mercado_medio) * 100);
+  const links = buildSearchUrls(r.titulo);
 
-  currentUrl = url;
-  hide('formSection');
-  hide('errorSection');
-  document.getElementById('resultSection').style.display = 'none';
-  document.getElementById('compareResultSection').style.display = 'none';
-  show('loadingSection');
+  return `
+    <div class="car-name">${r.titulo}</div>
+    <div class="car-meta">${r.info}</div>
+    <div class="verdict-banner">
+      <div class="score-circle ${scoreClass(r.puntuacion)}">${Number(r.puntuacion).toFixed(1)}</div>
+      <div>
+        <div class="verdict-main">${r.veredicto}</div>
+        <div class="verdict-price">Precio máximo recomendado: <strong>${r.precio_maximo_pagar.toLocaleString('es-ES')} €</strong></div>
+      </div>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-label">Precio anuncio</div><div class="metric-value">${r.precio_anuncio.toLocaleString('es-ES')} €</div></div>
+      <div class="metric-card"><div class="metric-label">Media mercado</div><div class="metric-value">${r.precio_mercado_medio.toLocaleString('es-ES')} €</div><div class="metric-sub">${r.precio_mercado_min.toLocaleString('es-ES')} – ${r.precio_mercado_max.toLocaleString('es-ES')} €</div></div>
+      <div class="metric-card"><div class="metric-label">Diferencia</div><div class="metric-value" style="color:${diff > 0 ? 'var(--red)' : 'var(--green)'}">${diff >= 0 ? '+' : ''}${diff.toLocaleString('es-ES')} €</div><div class="metric-sub">${diffPct > 0 ? '+' : ''}${diffPct}% vs mercado</div></div>
+    </div>
+    <p class="section-label">Análisis por criterios</p>
+    <div>${r.criterios.map(c => `
+      <div class="criterio-row">
+        <span class="criterio-name">${c.nombre}</span>
+        <div class="criterio-bar-bg"><div class="criterio-bar-fill" style="width:${c.nota*10}%;background:${barColor(c.nota)}"></div></div>
+        <span class="criterio-score" style="color:${barColor(c.nota)}">${c.nota}</span>
+      </div>`).join('')}</div>
+    <p class="section-label" style="margin-top:1.25rem">Señales detectadas</p>
+    <div class="alertas-list">${r.alertas.map(a => `
+      <div class="alerta ${a.tipo === 'ok' ? 'ok' : a.tipo}">${alertIcon[a.tipo]||alertIcon.info}<span>${a.texto}</span></div>`).join('')}</div>
+    <hr class="divider">
+    <p class="section-label" style="margin-top:0">Resumen</p>
+    <div class="resumen-box">${r.resumen}</div>
+    <div class="similares-box">
+      <div class="similares-title">Buscar coches similares</div>
+      <div class="similares-sub">Ver más anuncios de este modelo en otras plataformas</div>
+      <div class="similares-btns">${links.map(l => `<a href="${l.url}" target="_blank" class="btn-platform">↗ ${l.name}</a>`).join('')}</div>
+    </div>
+    <div class="source-link">Ver anuncio original: <a href="${url}" target="_blank">${url.length > 60 ? url.slice(0,60)+'...' : url}</a></div>`;
+}
+
+function renderComparativa() {
+  const available = analyses.filter(a => a !== null);
+  const cc = document.getElementById('compareContent');
+
+  if (available.length === 0) {
+    cc.innerHTML = `<div class="empty-compare">Analiza al menos un coche para ver la comparativa</div>`;
+    return;
+  }
+  if (available.length === 1) {
+    cc.innerHTML = `<div class="empty-compare">Analiza al menos dos coches para comparar</div>`;
+    return;
+  }
+
+  const best = analyses.reduce((prev, curr) => {
+    if (!prev) return curr;
+    if (!curr) return prev;
+    return curr.puntuacion > prev.puntuacion ? curr : prev;
+  });
+
+  const cards = analyses.map((r, i) => {
+    if (!r) return '';
+    const isWinner = r === best && available.length > 1;
+    const diff = r.precio_anuncio - r.precio_mercado_medio;
+    const diffPct = Math.round((diff / r.precio_mercado_medio) * 100);
+    return `
+      <div class="compare-card ${isWinner ? 'winner' : ''}">
+        ${isWinner ? '<span class="compare-badge">Mejor opción</span>' : `<div class="compare-num">Coche ${i+1}</div>`}
+        <div class="compare-name">${r.titulo}</div>
+        <div class="compare-score-big" style="color:${barColor(r.puntuacion)}">${Number(r.puntuacion).toFixed(1)}<span style="font-size:14px;color:var(--muted);font-weight:400">/10</span></div>
+        <div class="compare-price-line"><strong>${r.precio_anuncio.toLocaleString('es-ES')} €</strong> <span style="color:${diff>0?'var(--red)':'var(--green)'}">${diff>=0?'+':''}${diffPct}%</span></div>
+        <div class="compare-mini-criterios">${r.criterios.map(c => `
+          <div class="cmc-row"><span>${c.nombre}</span><span style="font-weight:500;color:${barColor(c.nota)}">${c.nota}</span></div>`).join('')}
+        </div>
+      </div>`;
+  }).join('');
+
+  const winner = best;
+  const others = available.filter(a => a !== best);
+  const priceDiff = Math.abs(winner.precio_anuncio - (others[0] ? others[0].precio_anuncio : winner.precio_anuncio));
+
+  let veredicto = `El ${winner.titulo} es la mejor opción con una puntuación de ${Number(winner.puntuacion).toFixed(1)}/10.`;
+  if (others.length > 0) {
+    veredicto += ` Frente al ${others.map(o => o.titulo + ' (' + Number(o.puntuacion).toFixed(1) + '/10)').join(' y el ')}.`;
+    if (priceDiff > 0) veredicto += ` La diferencia de precio es de ${priceDiff.toLocaleString('es-ES')} €.`;
+  }
+  veredicto += ` Basándonos en precio, kilómetros y fiabilidad, te recomendamos el ${winner.titulo}.`;
+
+  cc.innerHTML = `
+    <p class="compare-intro">Comparativa de los ${available.length} coches analizados. El ganador se marca en verde.</p>
+    <div class="compare-cards">${cards}</div>
+    <p class="section-label" style="margin-top:0">Veredicto final</p>
+    <div class="compare-veredicto">${veredicto}</div>`;
+}
+
+async function fetchAndAnalyze(url, loadingEl, resultEl) {
+  loadingEl.style.display = 'block';
+  if (resultEl) resultEl.style.display = 'none';
 
   let stepIdx = 0;
-  document.getElementById('loadingStep').textContent = steps[0];
-  stepInterval = setInterval(() => { stepIdx++; document.getElementById('loadingStep').textContent = steps[stepIdx % steps.length]; }, 2000);
+  const stepEl = loadingEl.querySelector('.loading-step');
+  if (stepEl) stepEl.textContent = stepsMsgs[0];
+  const interval = setInterval(() => { stepIdx++; if (stepEl) stepEl.textContent = stepsMsgs[stepIdx % stepsMsgs.length]; }, 2000);
 
   try {
     const fetchResp = await fetch('/api/fetch-listing', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({url}) });
@@ -265,149 +355,86 @@ async function analizar() {
     const analysis = await analyzeResp.json();
     if (!analyzeResp.ok) throw new Error(analysis.error || 'Error en el análisis');
 
-    clearInterval(stepInterval);
-    currentAnalysis = analysis;
-    renderResult(analysis, url);
+    clearInterval(interval);
+    loadingEl.style.display = 'none';
+    return analysis;
   } catch (err) {
-    clearInterval(stepInterval);
-    hide('loadingSection');
-    const errEl = document.getElementById('errorSection');
-    errEl.innerHTML = `${err.message} &nbsp;<button class="btn btn-sm" onclick="nuevo()">Volver</button>`;
-    show('errorSection');
+    clearInterval(interval);
+    loadingEl.style.display = 'none';
+    throw err;
   }
 }
 
-async function compararCoche() {
-  const url2 = document.getElementById('compareUrlInput').value.trim();
-  if (!url2) { document.getElementById('compareUrlInput').focus(); return; }
-  if (!currentAnalysis) return;
+async function iniciarAnalisis() {
+  const url = document.getElementById('urlInput').value.trim();
+  if (!url) { document.getElementById('urlInput').focus(); return; }
 
-  document.getElementById('compareResultSection').style.display = 'none';
-  show('compareLoadingSection');
+  document.getElementById('startSection').style.display = 'none';
+  document.getElementById('tabsSection').style.display = 'block';
+
+  const tab0 = document.getElementById('tab-0');
+  tab0.innerHTML = `<div class="loading-inline"><div class="spinner"></div><div class="loading-step">${stepsMsgs[0]}</div></div>`;
 
   try {
-    const fetchResp = await fetch('/api/fetch-listing', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({url: url2}) });
-    const fetchData = await fetchResp.json();
-    if (!fetchResp.ok) throw new Error(fetchData.error || 'Error al acceder al segundo anuncio');
-
-    const analyzeResp = await fetch('/api/analyze', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({listingText: fetchData.text, url: url2}) });
-    const analysis2 = await analyzeResp.json();
-    if (!analyzeResp.ok) throw new Error(analysis2.error || 'Error en el análisis');
-
-    hide('compareLoadingSection');
-    secondAnalysis = analysis2;
-    renderComparacion(currentAnalysis, analysis2);
+    const loadingEl = tab0.querySelector('.loading-inline');
+    const analysis = await fetchAndAnalyze(url, loadingEl, null);
+    analyses[0] = analysis;
+    tab0.innerHTML = renderAnalysis(analysis, url, 0);
+    document.getElementById('tab-btn-0').innerHTML = `Coche 1<span class="tab-dot"></span>`;
+    document.getElementById('tab-btn-0').classList.add('done');
+    switchTab(0);
   } catch (err) {
-    hide('compareLoadingSection');
-    alert('Error al analizar el segundo coche: ' + err.message);
+    tab0.innerHTML = `<div class="error-box">${err.message} <button class="btn btn-sm" onclick="reiniciar()" style="margin-left:8px">Volver</button></div>`;
   }
 }
 
-function barColor(n) {
-  if (n >= 7) return '#4A8A2A';
-  if (n >= 5) return '#C07A20';
-  return '#C03030';
-}
-function scoreClass(n) {
-  if (n >= 7) return 'good'; if (n >= 5) return 'ok'; return 'bad';
-}
-const alertIcon = {
-  warn: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L13 12H1L7 1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M7 5.5V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="10" r="0.6" fill="currentColor"/></svg>`,
-  ok: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M4.5 7L6.2 8.8L9.5 5.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-  info: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 6.5V10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="4.5" r="0.6" fill="currentColor"/></svg>`,
-  danger: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M5 5L9 9M9 5L5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`
-};
+async function analizarTab(tabIdx) {
+  const inputEl = document.getElementById(`urlInput${tabIdx}`);
+  const url = inputEl ? inputEl.value.trim() : '';
+  if (!url) { if (inputEl) inputEl.focus(); return; }
 
-function renderResult(r, url) {
-  hide('loadingSection');
-  document.getElementById('carName').textContent = r.titulo;
-  document.getElementById('carMeta').textContent = r.info;
+  const inputArea = document.getElementById(`input-${tabIdx}`);
+  const resultArea = document.getElementById(`result-${tabIdx}`);
 
-  const sc = document.getElementById('scoreCircle');
-  sc.textContent = Number(r.puntuacion).toFixed(1);
-  sc.className = 'score-circle ' + scoreClass(r.puntuacion);
-  document.getElementById('verdictMain').textContent = r.veredicto;
-  document.getElementById('verdictPrice').innerHTML = `Precio máximo recomendado: <strong>${r.precio_maximo_pagar.toLocaleString('es-ES')} €</strong>`;
+  inputArea.style.display = 'none';
+  resultArea.style.display = 'block';
+  resultArea.innerHTML = `<div class="loading-inline"><div class="spinner"></div><div class="loading-step">${stepsMsgs[0]}</div></div>`;
 
-  const diff = r.precio_anuncio - r.precio_mercado_medio;
-  const diffPct = Math.round((diff / r.precio_mercado_medio) * 100);
-  document.getElementById('metricsGrid').innerHTML = `
-    <div class="metric-card"><div class="metric-label">Precio anuncio</div><div class="metric-value">${r.precio_anuncio.toLocaleString('es-ES')} €</div></div>
-    <div class="metric-card"><div class="metric-label">Media de mercado</div><div class="metric-value">${r.precio_mercado_medio.toLocaleString('es-ES')} €</div><div class="metric-sub">${r.precio_mercado_min.toLocaleString('es-ES')} – ${r.precio_mercado_max.toLocaleString('es-ES')} €</div></div>
-    <div class="metric-card"><div class="metric-label">Diferencia</div><div class="metric-value" style="color:${diff > 0 ? 'var(--red)' : 'var(--green)'}">${diff >= 0 ? '+' : ''}${diff.toLocaleString('es-ES')} €</div><div class="metric-sub">${diffPct > 0 ? '+' : ''}${diffPct}% vs mercado</div></div>`;
-
-  document.getElementById('criteriosList').innerHTML = r.criterios.map(c => `
-    <div class="criterio-row">
-      <span class="criterio-name">${c.nombre}</span>
-      <div class="criterio-bar-bg"><div class="criterio-bar-fill" style="width:${c.nota*10}%;background:${barColor(c.nota)}"></div></div>
-      <span class="criterio-score" style="color:${barColor(c.nota)}">${c.nota}</span>
-    </div>`).join('');
-
-  document.getElementById('alertasList').innerHTML = r.alertas.map(a => `
-    <div class="alerta ${a.tipo === 'ok' ? 'ok' : a.tipo}">${alertIcon[a.tipo]||alertIcon.info}<span>${a.texto}</span></div>`).join('');
-
-  document.getElementById('resumenBox').textContent = r.resumen;
-
-  // Botones buscar similares
-  const links = buildSearchUrls(r.titulo);
-  document.getElementById('similaresBtns').innerHTML = links.map(l =>
-    `<a href="${l.url}" target="_blank" class="btn-platform">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3v3l2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-      Ver en ${l.name}
-    </a>`).join('');
-
-  document.getElementById('sourceLink').innerHTML = `Ver anuncio original: <a href="${url}" target="_blank">${url.length > 60 ? url.slice(0,60)+'...' : url}</a>`;
-  document.getElementById('resultSection').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function renderComparacion(r1, r2) {
-  const winner = r1.puntuacion >= r2.puntuacion ? 1 : 2;
-
-  function compareCard(r, num, isWinner) {
-    const diff = r.precio_anuncio - r.precio_mercado_medio;
-    const diffPct = Math.round((diff / r.precio_mercado_medio) * 100);
-    return `
-      <div class="compare-card ${isWinner ? 'winner' : ''}">
-        ${isWinner ? '<span class="compare-badge">Mejor opción</span>' : '<div style="height:22px"></div>'}
-        <div class="compare-name">${r.titulo}</div>
-        <div class="compare-meta">${r.info}</div>
-        <div class="compare-score" style="color:${barColor(r.puntuacion)}">${Number(r.puntuacion).toFixed(1)}<span style="font-size:14px;color:var(--muted);font-weight:400">/10</span></div>
-        <div class="compare-price">
-          <strong>${r.precio_anuncio.toLocaleString('es-ES')} €</strong>
-          <span style="margin-left:8px;color:${diff>0?'var(--red)':'var(--green)'}">${diff>=0?'+':''}${diffPct}% vs mercado</span>
-        </div>
-        <div class="compare-criterios">
-          ${r.criterios.map(c => `
-            <div class="compare-criterio-row">
-              <span style="color:var(--muted)">${c.nombre}</span>
-              <span style="font-weight:500;color:${barColor(c.nota)}">${c.nota}</span>
-            </div>`).join('')}
-        </div>
-      </div>`;
+  try {
+    const loadingEl = resultArea.querySelector('.loading-inline');
+    const analysis = await fetchAndAnalyze(url, loadingEl, null);
+    analyses[tabIdx] = analysis;
+    resultArea.innerHTML = renderAnalysis(analysis, url, tabIdx);
+    document.getElementById(`tab-btn-${tabIdx}`).innerHTML = `Coche ${tabIdx+1}<span class="tab-dot"></span>`;
+    document.getElementById(`tab-btn-${tabIdx}`).classList.add('done');
+  } catch (err) {
+    resultArea.innerHTML = `<div class="error-box">${err.message} <button class="btn btn-sm" onclick="resetTab(${tabIdx})">Reintentar</button></div>`;
   }
-
-  document.getElementById('compareGrid').innerHTML =
-    compareCard(r1, 1, winner === 1) + compareCard(r2, 2, winner === 2);
-
-  const w = winner === 1 ? r1 : r2;
-  const l = winner === 1 ? r2 : r1;
-  const diff = Math.abs(r1.precio_anuncio - r2.precio_anuncio);
-  document.getElementById('compareVeredicto').textContent =
-    `El ${w.titulo} sale mejor parado con una puntuación de ${Number(w.puntuacion).toFixed(1)} frente al ${Number(l.puntuacion).toFixed(1)} del ${l.titulo}. La diferencia de precio entre ambos es de ${diff.toLocaleString('es-ES')} €. Si el estado de ambos es similar, te recomendamos el primero.`;
-
-  show('compareResultSection');
-  document.getElementById('compareResultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function compartir() {
-  if (!currentAnalysis) return;
-  const r = currentAnalysis;
-  let txt = `AutoChoice — Análisis de ${r.titulo}\n\nPuntuación: ${r.puntuacion}/10\nPrecio anuncio: ${r.precio_anuncio.toLocaleString('es-ES')} €\nMedia de mercado: ${r.precio_mercado_medio.toLocaleString('es-ES')} €\nPrecio máximo recomendado: ${r.precio_maximo_pagar.toLocaleString('es-ES')} €\n\nVeredicto: ${r.veredicto}\n\n${r.resumen}\n\nAnalizado con AutoChoice`;
-  if (secondAnalysis) {
-    txt += `\n\n--- Comparativa ---\n${r.titulo}: ${r.puntuacion}/10\n${secondAnalysis.titulo}: ${secondAnalysis.puntuacion}/10`;
-  }
-  navigator.clipboard.writeText(txt).then(() => alert('Resumen copiado al portapapeles'));
+function resetTab(tabIdx) {
+  analyses[tabIdx] = null;
+  document.getElementById(`result-${tabIdx}`).style.display = 'none';
+  document.getElementById(`input-${tabIdx}`).style.display = 'block';
+  document.getElementById(`tab-btn-${tabIdx}`).innerHTML = `Coche ${tabIdx+1}`;
+  document.getElementById(`tab-btn-${tabIdx}`).classList.remove('done');
+}
+
+function reiniciar() {
+  analyses[0] = analyses[1] = analyses[2] = null;
+  document.getElementById('urlInput').value = '';
+  document.getElementById('tabsSection').style.display = 'none';
+  document.getElementById('startSection').style.display = 'block';
+  ['urlInput1','urlInput2'].forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
+  [1,2].forEach(i => {
+    const inp = document.getElementById(`input-${i}`); if(inp) inp.style.display = 'block';
+    const res = document.getElementById(`result-${i}`); if(res) { res.style.display = 'none'; res.innerHTML = ''; }
+    const btn = document.getElementById(`tab-btn-${i}`); if(btn) { btn.innerHTML = `Coche ${i+1}`; btn.classList.remove('done'); }
+  });
+  document.getElementById('tab-btn-0').innerHTML = 'Coche 1';
+  document.getElementById('tab-btn-0').classList.remove('done');
+  document.getElementById('tab-0').innerHTML = '';
+  switchTab(0);
 }
 </script>
 </body>
