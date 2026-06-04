@@ -40,8 +40,10 @@ app.post('/api/fetch-listing', async (req, res) => {
 });
 
 app.post('/api/analyze', async (req, res) => {
-  const { listingText, url, apiKey } = req.body;
-  if (!listingText || !apiKey) return res.status(400).json({ error: 'Faltan datos' });
+  const { listingText, url } = req.body;
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!listingText) return res.status(400).json({ error: 'Faltan datos' });
+  if (!apiKey) return res.status(500).json({ error: 'API Key no configurada en el servidor' });
 
   const prompt = `Eres un experto en coches de segunda mano en España con acceso a precios reales del mercado actual.
 
