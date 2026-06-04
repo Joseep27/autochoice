@@ -479,12 +479,6 @@
 
   <div id="formSection">
     <div class="input-card">
-      <div class="api-row">
-        <label for="apiKeyInput">Tu API Key de Anthropic</label>
-        <input type="password" id="apiKeyInput" placeholder="sk-ant-..." autocomplete="off" />
-        <p class="input-hint">Obtén una gratis en <a href="https://console.anthropic.com" target="_blank" style="color:var(--accent)">console.anthropic.com</a>. No se guarda en ningún servidor.</p>
-      </div>
-
       <div class="url-row">
         <input type="text" id="urlInput" placeholder="https://www.coches.net/audi-q3-..." />
         <button class="btn btn-primary" onclick="analizar()">Analizar</button>
@@ -575,14 +569,8 @@ function nuevo() {
 
 async function analizar() {
   const url = document.getElementById('urlInput').value.trim();
-  const apiKey = document.getElementById('apiKeyInput').value.trim();
 
   if (!url) { document.getElementById('urlInput').focus(); return; }
-  if (!apiKey) {
-    document.getElementById('errorSection').textContent = 'Introduce tu API Key de Anthropic para continuar.';
-    show('errorSection');
-    return;
-  }
 
   currentUrl = url;
   hide('formSection');
@@ -609,7 +597,7 @@ async function analizar() {
     const analyzeResp = await fetch('/api/analyze', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ listingText: fetchData.text, url, apiKey })
+      body: JSON.stringify({ listingText: fetchData.text, url })
     });
 
     const analysis = await analyzeResp.json();
