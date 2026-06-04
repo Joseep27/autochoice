@@ -24,7 +24,6 @@ app.post('/api/fetch-listing', async (req, res) => {
 
     const html = await response.text();
 
-    // Extract readable text from HTML
     let text = html
       .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
       .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
@@ -42,8 +41,12 @@ app.post('/api/fetch-listing', async (req, res) => {
 app.post('/api/analyze', async (req, res) => {
   const { listingText, url } = req.body;
   const apiKey = process.env.ANTHROPIC_API_KEY;
+
   if (!listingText) return res.status(400).json({ error: 'Faltan datos' });
   if (!apiKey) return res.status(500).json({ error: 'API Key no configurada en el servidor' });
+
+  console.log('API Key found, length:', apiKey.length);
+  console.log('API Key starts with:', apiKey.slice(0, 10));
 
   const prompt = `Eres un experto en coches de segunda mano en España con acceso a precios reales del mercado actual.
 
@@ -84,7 +87,7 @@ Responde SOLO con JSON válido, sin texto extra ni backticks:
   "resumen": "Párrafo de 4-5 frases con análisis detallado: contexto del anuncio, posición en el mercado, puntos fuertes y débiles, y recomendación concreta (comprar, negociar precio, o pasar)."
 }
 
-Tipos de alerta: warn=amarillo (precaución), ok=verde (positivo), info=azul (información), danger=rojo (riesgo).
+Tipos de alerta: warn=amarillo, ok=verde, info=azul, danger=rojo.
 Genera entre 3 y 5 alertas relevantes basadas en los datos reales del anuncio.`;
 
   try {
@@ -103,12 +106,17 @@ Genera entre 3 y 5 alertas relevantes basadas en los datos reales del anuncio.`;
     });
 
     const data = await response.json();
-    if (!data.content?.[0]?.text) throw new Error('Sin respuesta de la IA');
+    console.log('Anthropic status:', response.status);
+    console.log('Anthropic response:', JSON.stringify(data).slice(0, 300));
+
+    if (data.error) throw new Error(`Anthropic error: ${data.error.message}`);
+    if (!data.content || !data.content[0]) throw new Error('Sin contenido en respuesta');
 
     let raw = data.content[0].text.trim().replace(/```json|```/g, '').trim();
     const analysis = JSON.parse(raw);
     res.json(analysis);
   } catch (err) {
+    console.error('Error completo:', err.message);
     res.status(500).json({ error: `Error al analizar: ${err.message}` });
   }
 });
